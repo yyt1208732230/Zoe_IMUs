@@ -46,8 +46,6 @@ def updateData(DeviceModel, f):
 
 async def main():
     """Main function to handle device scanning and connection."""
-    f = create_log_file()
-
     await scan()
     
     device_mac = None
@@ -58,11 +56,12 @@ async def main():
             break
     
     if device_mac:
+        f = create_log_file()
         device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, f))
         await device.openDevice()
+        f.close()
     else:
         print("No Bluetooth device corresponding to Mac address found!!")
-        f.close()
 
 if __name__ == '__main__':
     asyncio.run(main())
