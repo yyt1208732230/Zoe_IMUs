@@ -1,6 +1,8 @@
 # Initialization
 Please ensure the environment is fully set up before starting to publish data from the IMU sensor.
 
+![Data transmission topology diagram](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/WIT_BWT901CL/mqtt_server_mosquitto/MQTT.png "MQTT Topology")
+
 ## Step 1: Software Checklist (Installation)
 1. **Install MQTT Broker (Server)**
    - Install Mosquitto:
