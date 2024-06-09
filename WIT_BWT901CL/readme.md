@@ -41,7 +41,8 @@ Please ensure the environment is fully set up before starting to publish data fr
 1. (Optional) Create a subscriber on MQTTBox. You will see the data stream under the topic.
 2. Open the pre-set RTMaps and start recording data on the MQTT component.
 
-# IMU Testing Checklist
+
+# IMU Testing Plan
 
 | Test ID | Test Category                  | Test Description                                                                            | Test Result (√ or x) |
 |---------|--------------------------------|---------------------------------------------------------------------------------------------|----------------------|
