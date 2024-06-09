@@ -1,4 +1,4 @@
-# Initialization
+# WIT IMU Recording Processing with RTMaps
 Please ensure the environment is fully set up before starting to publish data from the IMU sensor.
 
 ![Data transmission topology diagram](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/WIT_BWT901CL/mqtt_server_mosquitto/MQTT.png "MQTT Topology")
@@ -25,13 +25,16 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 ## Step 3: Turn on the MQTT Server
 1. Open CMD and navigate to the Mosquitto folder (the server).
-2. In the root folder of Mosquitto, execute: `mosquitto.exe -c mosquitto.conf`
+  `cd mosquitto`
+2. In the root folder of Mosquitto, execute: 
+  `mosquitto.exe -c mosquitto.conf`
 3. (Optional) Create a client and subscriber on MQTTBox. You will see the data stream under the topic.
 
 ## Step 4: Start Publishing Data from the Bluetooth IMU
 1. Turn on the WIT IMU.
 2. Wait for 10 seconds (initialization of the Bluetooth sensor).
-3. In the IMU Python folder, execute: `python bt2mqtt_publisher_imu_WITt901cl.py`
+3. In the IMU Python folder, execute: 
+  `python bt2mqtt_publisher_imu_WITt901cl.py`
 4. You will see the data log on the console.
 
 ## Step 5: Collect IMU Sensor Data
