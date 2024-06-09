@@ -41,4 +41,18 @@ Please ensure the environment is fully set up before starting to publish data fr
 1. (Optional) Create a subscriber on MQTTBox. You will see the data stream under the topic.
 2. Open the pre-set RTMaps and start recording data on the MQTT component.
 
-Ref (CN): [CSDN Blog](https://blog.csdn.net/qq_42007164/article/details/128935923)
+# IMU Testing Checklist
+
+| Test ID | Test Category                  | Test Description                                                                            | Test Result (√ or x) |
+|---------|--------------------------------|---------------------------------------------------------------------------------------------|----------------------|
+| A1      | Sampling Rate Stability Test   | Test 100Hz Python MQTT                                                                             |                      |
+| A2      | Sampling Rate Stability Test   | Test 200Hz Python UDP                                                                              |                      |
+| A3      | Sampling Rate Stability Test   | Test 200Hz C++ MQTT                                                                         |                      |
+| B1      | Bluetooth Connection Stability | Test with cheap Bluetooth receiver (toocki) for 30 mins at 80% battery level                |                      |
+| B2      | Bluetooth Connection Stability | Test with high-end Bluetooth receiver (UGreen) for 30 mins                                  |                      |
+| B3      | Bluetooth Connection Stability | Test with WIT HID (manufacturer-specified model) Bluetooth receiver                         |                      |
+| C1      | Robustness Test                | Reconnect after IMU actively disconnects                                                    |                      |
+| C2      | Robustness Test                | Reconnect after IMU passively disconnects (shutdown)                                        |                      |
+| C3      | Robustness Test                | Reconnect after disconnection due to long distance (3M)                                     |                      |
+| C4      | Robustness Test                | Long-term connection test (2 hours)                                                         |                      |
+| C5      | Robustness Test                | Reconnect after broker server is shut down and restarted                              |                      |
