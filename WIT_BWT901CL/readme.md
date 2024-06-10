@@ -59,7 +59,7 @@ Please ensure the environment is fully set up before starting to publish data fr
 | C4      | Robustness                | Long-term connection test (2 hours)                                                         |                      | Return 10Hz; Bandwith XHz |
 | C5      | Robustness                | Reconnect after broker server is shut down and restarted                              |                      | Return 10Hz; Bandwith XHz |
 
-# Issues Log & Solution
+# Issue Logs & Solution
 ## A. Bleak Device Not Found Error : 
 - Source: Python Publisher Script `bt2mqtt_publisher_imu_WITt901cl`.
 - Details: 
