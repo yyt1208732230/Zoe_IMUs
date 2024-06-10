@@ -1,4 +1,8 @@
-# WIT IMU Recording Processing with RTMaps
+# IMU Data Collection Manual
+
+![IMU Visulization Demo](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/20240610084013_IMU_headmovement.png "IMU Demo")
+
+# WIT IMU Recording Processing with RTMaps (MQTT Protocol)
 Please ensure the environment is fully set up before starting to publish data from the IMU sensor.
 
 ![Data transmission topology diagram](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/WIT_BWT901CL/mqtt_server_mosquitto/MQTT.png "MQTT Topology")
@@ -41,7 +45,10 @@ Please ensure the environment is fully set up before starting to publish data fr
 1. (Optional) Create a subscriber on MQTTBox. You will see the data stream under the topic.
 2. Open the pre-set RTMaps and start recording data on the MQTT component.
 
-
+------
+# WIT IMU Recording Processing with RTMaps (UDP Protocol)
+...
+------
 # Testing Plan
 
 | Test ID | Test Category                  | Test Description                                                                            | Test Result (√ Passed or x Failed) | Setting |

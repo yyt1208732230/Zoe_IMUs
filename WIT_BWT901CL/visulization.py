@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 # 加载CSV文件，跳过第一行数据（除标题外）
-file_name = 'imuLog_1717739577.csv'
+file_name = './WIT_BWT901CL/imuLog_1717739577.csv'
 data = pd.read_csv(file_name, skiprows=[1])
 
 # 设置绘图风格
