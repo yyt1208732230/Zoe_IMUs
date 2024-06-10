@@ -59,7 +59,7 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 ---
 
-# Testing Plan (WIT901CL)
+# Test Cases (WIT901CL)
 
 | Test ID | Test Category                  | Test Description                                                                                     | Test Result (√ Passed or x Failed) | Protocol | Return Rate | Bandwith | Compilation language | Distance | Adapter |
 | ------- | ------------------------------ | ---------------------------------------------------------------------------------------------------- | ----------------------------------- | -------- | ----------- | -------- | -------------------- | -------- | ------- |
