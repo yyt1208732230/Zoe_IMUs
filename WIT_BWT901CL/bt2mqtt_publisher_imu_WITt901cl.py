@@ -55,11 +55,14 @@ def updateData(DeviceModel, f, client, topic, is_csv):
     处理设备数据更新并通过MQTT发送。
     """
     data_str = dict_values_to_string(DeviceModel.deviceData)
+
     # Data console log
-    print(DeviceModel.deviceData)
+    # print(DeviceModel.deviceData)
+
     # Data log configuration
-    if is_csv:
-        f.write('\n' + data_str)
+    # if is_csv:
+    #     f.write('\n' + data_str)
+
     # MQTT data publisher
     client.publish(topic, data_str)
 
@@ -76,7 +79,7 @@ async def main():
     topic = "imu/wit/all"
 
     # Create MQTT client
-    client = mqtt.Client()
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1,'IMU')
     client.connect(broker, port, 60)
     client.loop_start()
 
@@ -84,20 +87,26 @@ async def main():
     user_input = '00:0C:BF:08:26:66'
     device_mac = await scan(user_input)
 
-    if device_mac:
-        # start csv log
-        if is_csv:
-            f = create_log_file()
-        else: 
-            f= None
-        # start reading imu data
-        device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, f, client, topic, is_csv))
-        await device.openDevice()
-        # close csv log
-        if is_csv:
-            f.close()
-    else:
-        print("No Bluetooth device corresponding to Mac address found!!")
+    device = None
+    try:
+        if device_mac:
+            # start csv log
+            if is_csv:
+                f = create_log_file()
+            else: 
+                f= None
+            # start reading imu data
+            device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, f, client, topic, is_csv))
+            await device.openDevice()
+            # close csv log
+            if is_csv:
+                f.close()
+        else:
+            print("No Bluetooth device corresponding to Mac address found!!")
+    except Exception as ex:
+            if device:
+                await device.closeDevice()
+            print(ex)
 
 if __name__ == '__main__':
     asyncio.run(main())

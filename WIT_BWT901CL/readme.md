@@ -44,16 +44,37 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 # Testing Plan
 
-| Test ID | Test Category                  | Test Description                                                                            | Test Result (√ or x) |
-|---------|--------------------------------|---------------------------------------------------------------------------------------------|----------------------|
-| A1      | Sampling Rate Stability   | Test 100Hz Python MQTT                                                                             |                      |
-| A2      | Sampling Rate Stability   | Test 200Hz Python UDP                                                                              |                      |
-| A3      | Sampling Rate Stability   | Test 200Hz C++ MQTT                                                                         |                      |
-| B1      | Bluetooth Connection Stability | Test with cheap Bluetooth receiver (toocki) for 30 mins at 80% battery level                |                      |
-| B2      | Bluetooth Connection Stability | Test with high-end Bluetooth receiver (UGreen) for 30 mins                                  |                      |
-| B3      | Bluetooth Connection Stability | Test with WIT HID (manufacturer-specified model) Bluetooth receiver                         |                      |
-| C1      | Robustness                | Reconnect after IMU actively disconnects                                                    |                      |
-| C2      | Robustness                | Reconnect after IMU passively disconnects (shutdown)                                        |                      |
-| C3      | Robustness                | Reconnect after disconnection due to long distance (3M)                                     |                      |
-| C4      | Robustness                | Long-term connection test (2 hours)                                                         |                      |
-| C5      | Robustness                | Reconnect after broker server is shut down and restarted                              |                      |
+| Test ID | Test Category                  | Test Description                                                                            | Test Result (√ Passed or x Failed) | Setting |
+|---------|--------------------------------|---------------------------------------------------------------------------------------------|----------------------| -------- |
+| A1      | Sampling Rate Stability   | Test 10Hz Python MQTT                                                                             | X                     | Return 10Hz; Bandwith 20Hz |
+| A2      | Sampling Rate Stability   | Test 50Hz Python MQTT                                                                             |                      | Return 50Hz; Bandwith XHz |
+| A3      | Sampling Rate Stability   | Test 200Hz Python UDP                                                                              |                      | Return 200Hz; Bandwith XHz |
+| A4      | Sampling Rate Stability   | Test 200Hz C++ MQTT                                                                         |                      | Return 10Hz; Bandwith XHz |
+| B1      | Bluetooth Connection Stability | Test with cheap Bluetooth receiver (toocki) for 2+ hours at 80% battery level                | √                     | Return 10Hz; Bandwith 20Hz; Super short distance |
+| B2      | Bluetooth Connection Stability | Test with high-end Bluetooth receiver (UGreen) for 30 mins                                  |                      | Return 10Hz; Bandwith XHz |
+| B3      | Bluetooth Connection Stability | Test with WIT HID (manufacturer-specified model) Bluetooth receiver                         |                      | Return 10Hz; Bandwith XHz |
+| C1      | Robustness                | Reconnect after IMU actively disconnects                                                    |                      | Return 10Hz; Bandwith XHz |
+| C2      | Robustness                | Reconnect after IMU passively disconnects (shutdown)                                        |                      | Return 10Hz; Bandwith XHz |
+| C3      | Robustness                | Reconnect after disconnection due to long distance (3M)                                     |                      | Return 10Hz; Bandwith XHz |
+| C4      | Robustness                | Long-term connection test (2 hours)                                                         |                      | Return 10Hz; Bandwith XHz |
+| C5      | Robustness                | Reconnect after broker server is shut down and restarted                              |                      | Return 10Hz; Bandwith XHz |
+
+# Issues Log & Solution
+## A. Bleak Device Not Found Error : 
+- Source: Python Publisher Script `bt2mqtt_publisher_imu_WITt901cl`.
+- Details: 
+```Found device: 00:0C:BF:08:26:66: HC-06
+Initialize device model
+Opening device......
+...
+ File "C:\ProgramData\anaconda3\Lib\site-packages\bleak\backends\winrt\client.py", line 293, in connect
+    raise BleakDeviceNotFoundError(
+bleak.exc.BleakDeviceNotFoundError: Device with address 00:0C:BF:08:26:66 was not found.
+```
+- Solution: 
+```
+1. Terminate Script `bt2mqtt_publisher_imu_WITt901cl` & 
+2. turn off IMU & 
+3. wait for 15 seconds & 
+4. retry *STEP 4*.
+```

@@ -46,15 +46,14 @@ def dict_values_to_string(input_dict):
     result_string = ','.join(values_as_strings)
     return result_string
 
-def updateData(DeviceModel, f, sock, addr):
+def updateData(DeviceModel, sock, addr, f=None):
     """Handle updates to device data and send it to the specified port.
     处理设备数据更新并将其发送到指定端口。
     """
     data_str = dict_values_to_string(DeviceModel.deviceData)
-    print(DeviceModel.deviceData)
-    f.write('\n' + data_str)
+    # print(DeviceModel.deviceData)
+    # f.write('\n' + data_str)
     sock.sendto(data_str.encode(), addr)
-    print('*'+data_str.encode().decode())
 
 
 async def main():
@@ -79,10 +78,11 @@ async def main():
             break
     
     if device_mac:
-        f = create_log_file()
-        device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, f, sock, addr))
+        # f = create_log_file()
+        # device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, sock, addr, f))
+        device = device_model.DeviceModel("MyBle5.0", device_mac, lambda data: updateData(data, sock, addr))
         await device.openDevice()
-        f.close()
+        # f.close()
     else:
         print("No Bluetooth device corresponding to Mac address found!!")
 
