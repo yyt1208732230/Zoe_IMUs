@@ -57,7 +57,7 @@ def updateData(DeviceModel, f, client, topic, is_csv):
     data_str = dict_values_to_string(DeviceModel.deviceData)
 
     # Data console log
-    # print(DeviceModel.deviceData)
+    print(DeviceModel.deviceData)
 
     # Data log configuration
     # if is_csv:

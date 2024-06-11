@@ -34,8 +34,9 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 1. Open CMD and navigate to the Mosquitto folder (the server).
    `cd mosquitto`
-2. In the root folder of Mosquitto, execute:
-   `mosquitto.exe -c mosquitto.conf`
+2. In the root folder of Mosquitto, execute: 
+   - (optional) if is new set-up in the server computer, set user name&password first with `mosquitto_passwd -c  pwfile.example admin`, and pwd with `admin`.
+   - `mosquitto.exe -c mosquitto.conf`
 3. (Optional) Create a client and subscriber on MQTTBox. You will see the data stream under the topic.
 
 ## Step 4: Start Publishing Data from the Bluetooth IMU

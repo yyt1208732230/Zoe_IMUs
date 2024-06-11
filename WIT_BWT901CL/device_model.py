@@ -4,7 +4,7 @@ import time
 import struct
 import bleak
 import asyncio
-import datetime
+from datetime import datetime
 
 
 # 设备实例 Device instance
@@ -129,7 +129,6 @@ class DeviceModel:
 
     # 数据解析 data analysis
     def processData(self, Bytes):
-        # self.callback_method(self)
         # 时间 Time
         if Bytes[1] == 0x50:
             year = Bytes[2] + 2000
@@ -139,14 +138,17 @@ class DeviceModel:
             minute = Bytes[6]
             sec = Bytes[7]
             mils = Bytes[9] << 8 | Bytes[8]
-            self.set("time", "{}-{}-{} {}:{}:{}:{}".format(year, mon, day, hour, minute, sec, mils))
+            dt = datetime(year, mon, day, hour, minute, sec, mils * 1000)
+            timestamp = dt.timestamp()
+            self.set("time", timestamp) 
+            # self.callback_method(self)
+            # self.set("time", "{}-{}-{} {}:{}:{}:{}".format(year, mon, day, hour, minute, sec, mils))
         # 加速度 Acceleration
         elif Bytes[1] == 0x51:
             Ax = self.getSignInt16(Bytes[3] << 8 | Bytes[2]) / 32768 * 16
             Ay = self.getSignInt16(Bytes[5] << 8 | Bytes[4]) / 32768 * 16
             Az = self.getSignInt16(Bytes[7] << 8 | Bytes[6]) / 32768 * 16
-            self.set("time", time.time())
-            # self.set("Bytes", Bytes)
+            # self.set("time", time.time())
             self.set("AccX", round(Ax, 3))
             self.set("AccY", round(Ay, 3))
             self.set("AccZ", round(Az, 3))
