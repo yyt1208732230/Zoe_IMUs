@@ -4,7 +4,7 @@ import time
 import struct
 import bleak
 import asyncio
-from datetime import datetime
+# from datetime import datetime
 
 
 # 设备实例 Device instance
@@ -108,6 +108,19 @@ class DeviceModel:
         self.isOpen = False
         print("The device is turned off")
 
+    def get_timestamp(self, Bytes):
+        year = (Bytes[2] + 2000) - 1970
+        mon = Bytes[3]
+        day = Bytes[4]
+        hour = Bytes[5]
+        minute = Bytes[6]
+        sec = Bytes[7]
+        mils = Bytes[9] << 8 | Bytes[8]
+
+        timestamp = (year << 42) | (mon << 38) | (day << 32) | (hour << 27) | (minute << 21) | (sec << 15) | mils
+        # timestamp = "{}-{}-{} {}:{}:{}:{}".format(year, mon, day, hour, minute, sec, mils)
+        return timestamp
+    
     # region 数据解析 data analysis
     # 串口数据处理  Serial port data processing
     def onDataReceived(self, sender, data):
@@ -131,18 +144,8 @@ class DeviceModel:
     def processData(self, Bytes):
         # 时间 Time
         if Bytes[1] == 0x50:
-            year = Bytes[2] + 2000
-            mon = Bytes[3]
-            day = Bytes[4]
-            hour = Bytes[5]
-            minute = Bytes[6]
-            sec = Bytes[7]
-            mils = Bytes[9] << 8 | Bytes[8]
-            dt = datetime(year, mon, day, hour, minute, sec, mils * 1000)
-            timestamp = dt.timestamp()
-            self.set("time", timestamp) 
-            # self.callback_method(self)
-            # self.set("time", "{}-{}-{} {}:{}:{}:{}".format(year, mon, day, hour, minute, sec, mils))
+            self.set("time", self.get_timestamp(Bytes))
+            self.callback_method(self)
         # 加速度 Acceleration
         elif Bytes[1] == 0x51:
             Ax = self.getSignInt16(Bytes[3] << 8 | Bytes[2]) / 32768 * 16
@@ -152,7 +155,6 @@ class DeviceModel:
             self.set("AccX", round(Ax, 3))
             self.set("AccY", round(Ay, 3))
             self.set("AccZ", round(Az, 3))
-            self.callback_method(self)
         # 角速度 Angular velocity
         elif Bytes[1] == 0x52:
             Gx = self.getSignInt16(Bytes[3] << 8 | Bytes[2]) / 32768 * 2000

@@ -34,7 +34,7 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 1. Open CMD and navigate to the Mosquitto folder (the server).
    `cd mosquitto`
-2. In the root folder of Mosquitto, execute: 
+2. In the root folder of Mosquitto, execute:
    - (optional) if is new set-up in the server computer, set user name&password first with `mosquitto_passwd -c  pwfile.example admin`, and pwd with `admin`.
    - `mosquitto.exe -c mosquitto.conf`
 3. (Optional) Create a client and subscriber on MQTTBox. You will see the data stream under the topic.
@@ -64,19 +64,19 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 | Test ID | Test Category                  | Test Description                                                                                     | Test Result (√ Passed or x Failed) | Protocol | Return Rate | Bandwith | Compilation language | Distance | Adapter |
 | ------- | ------------------------------ | ---------------------------------------------------------------------------------------------------- | ----------------------------------- | -------- | ----------- | -------- | -------------------- | -------- | ------- |
-| A1      | Sampling Rate Stability        | Test 10Hz in Python MQTT                                                                             | X                                   | MQTT     | 10Hz        | 20Hz     | Python               | ±1m     | toocki  |
-| A2      | Sampling Rate Stability        | Test 100Hz in Python MQTT                                                                            | X                                   | MQTT     | 200Hz       | 20Hz     | Python               | <20cm    | toocki  |
-| A3      | Sampling Rate Stability        | Test 10Hz in Python UDP                                                                              | X                                   | UDP      | 10Hz        | 20Hz     | Python               | ±1m     | toocki  |
-| A4      | Sampling Rate Stability        | Test 100Hz in Python UDP                                                                             | X                                   | UDP      | 200Hz       | 20Hz     | Python               | <20cm    | toocki  |
-| A5      | Sampling Rate Stability        | Test 100Hz in C++ MQTT                                                                               |                                     | MQTT     | 200Hz       | 20Hz     | C++                  |          | toocki  |
-| B1      | Bluetooth Connection Stability | Test with cheap Bluetooth receiver (toocki) for 2+ hours & movement within 2m                        |                                     |          | 200Hz       | 20Hz     | Python               | <20cm    | toocki  |
-| B2      | Bluetooth Connection Stability | Test with high-end Bluetooth receiver (UGreen) for 2+ hours & movement within 2m                    |                                     |          |             |          |                      |          |         |
+| A1      | Sampling Rate Stability        | Test 10Hz in Python MQTT                                                                             | √                                  | MQTT     | 200Hz       | 256Hz    | Python               | ±3m     | UGREEN  |
+| A2      | Sampling Rate Stability        | Test 40Hz in Python MQTT                                                                             | √                                  | MQTT     | 200Hz       | 256Hz    | Python               | ±3m     | UGREEN  |
+| A3      | Sampling Rate Stability        | Test 10Hz in Python UDP                                                                              | √ (not stable)                     | UDP      | 10Hz        | 256Hz    | Python               | ±3m     | UGREEN  |
+| A4      | Sampling Rate Stability        | Test 40Hz in Python UDP                                                                              | √ (not stable)                     | UDP      | 200Hz       | 256Hz    | Python               | ±3m     | UGREEN  |
+| A5      | Sampling Rate Stability        | Test 100Hz in C++ MQTT                                                                               |                                     | MQTT     | 200Hz       | 20Hz     | C++                  | ±3m     | UGREEN  |
+| B1      | Bluetooth Connection Stability | Test with cheap Bluetooth receiver (toocki) for 2+ hours & movement within 2m                        | X                                   | MQTT     | 200Hz       | 256Hz    | Python               | ±1m     | toocki  |
+| B2      | Bluetooth Connection Stability | Test with high-end Bluetooth receiver (UGreen) for 2+ hours & movement within 2m                    | -                                   |          |             |          |                      |          |         |
 | B3      | Bluetooth Connection Stability | Test with WIT HID (manufacturer-specified model) Bluetooth dongle for 2+ hours & movement within 2m |                                     |          |             |          |                      |          |         |
 | C1      | Robustness                     | [Better to have] Reconnect after IMU actively disconnects                                            | X                                   | MQTT     | 10Hz        | 20Hz     | Python               | ±1m     | toocki  |
 | C2      | Robustness                     | [Better to have] Reconnect after IMU passively disconnects (IMU turn-off)                            | X                                   | MQTT     | 10Hz        | 20Hz     | Python               | ±1m     | toocki  |
-| C3      | Robustness                     | Reconnect after disconnection due to long distance (3m+)                                             |                                     |          |             |          |                      |          |         |
+| C3      | Robustness                     | Reconnect after disconnection due to long distance (3m+)                                             | √                                  | MQTT     | 200Hz       | 256Hz    | Python               | ±4m     | UGREEN  |
 | C4      | Robustness                     | Long-term connection test (2 hours)                                                                  | √                                  | UDP      | 100Hz       | 20Hz     | Python               | <20cm    | toocki  |
-| C5      | Robustness                     | Reconnect after broker server is shut down and restarted                                             |                                     |          |             |          |                      |          |         |
+| C5      | Robustness                     | Reconnect after broker server is shut down and restarted                                             | -                                   |          |             |          |                      |          |         |
 
 # Issue Logs & Solution
 
