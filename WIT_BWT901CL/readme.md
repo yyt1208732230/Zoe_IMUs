@@ -58,6 +58,10 @@ Please ensure the environment is fully set up before starting to publish data fr
 
 ...
 
+![BT Adapter](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/WIT_BWT901CL/images/UGREEN%20Bluetooth%205.4%20Adapter.png "UGREEN BT Adapter")
+
+![IMU](https://github.com/yyt1208732230/Zoe_IMUs/blob/main/WIT_BWT901CL/images/WIT-BTIMU.png "WIT_BWT901CL")
+
 ---
 
 # Test Cases (WIT901CL)
