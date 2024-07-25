@@ -6,8 +6,11 @@ def plot_nudging_profiles():
     """Plot speed vs. time for three different nudging profiles on a white background."""
     # Time intervals and initial conditions
     t = np.linspace(0, 15, 300)
-    initial_speed = 12.5  # Starting speed for all profiles
-    final_speed = 12.05    # Speed after first deceleration
+    # initial_speed = 12.5  # Starting speed for all profiles
+    # final_speed = 12.05    # Speed after first deceleration
+    # max_time = 15           # Total time for simulation
+    initial_speed = 13.89  # Starting speed for all profiles
+    final_speed = 13.33    # Speed after first deceleration
     max_time = 15           # Total time for simulation
 
     # Acceleration values for each profile
